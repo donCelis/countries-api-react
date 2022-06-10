@@ -1,8 +1,32 @@
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import useDataContext from '../hooks/useDataContext'
 
 const Search = () => {
-  const { filterCountries, sms } = useDataContext()
+  const { filterCountries, sms, setCountries, countries } = useDataContext()
+  const [error, setError] = useState('')
+
+  const fetcher = async () => {
+    try {
+      const { data: countries, statusText } = await axios.get(
+        'https://restcountries.com/v3.1/all'
+      )
+      if (statusText === 'OK') {
+        setCountries(countries)
+      } else {
+        setError(statusText)
+      }
+    } catch (error) {
+      setError(error)
+    }
+  }
+
+  console.log(error)
+
+  useEffect(() => {
+    if (filterCountries.length === 0 && countries.length === 0) fetcher()
+  }, [])
 
   if (sms.type === 'error') {
     return (

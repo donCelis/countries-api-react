@@ -1,11 +1,14 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import useFetcher from '../hooks/useFetcher'
 
 const Country = () => {
   const { name = '' } = useParams()
+  const location = useLocation()
+
+  console.log(location)
 
   const { data: country, error } = useFetcher(
-    { url: 'https://restcountries.com/v3.1/name/', name }
+    { url: `https://restcountries.com/v3.1/name/${name}` }
   )
 
   if (error) return <p>{error}</p>

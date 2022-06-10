@@ -3,7 +3,7 @@ import { createContext, useState } from 'react'
 const DataContext = createContext(null)
 
 const methods = () => {
-  const [countries, setContries] = useState([])
+  const [countries, setCountries] = useState([])
   const [filterCountries, setFilterCountries] = useState([])
   const [sms, setSms] = useState({ type: '' })
 
@@ -30,7 +30,8 @@ const methods = () => {
   }
 
   return {
-    setContries,
+    countries,
+    setCountries,
     filterCountries,
     handlefilterCountries,
     sms

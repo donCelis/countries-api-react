@@ -4,7 +4,7 @@ import useFetcher from '../hooks/useFetcher'
 import useDataContext from '../hooks/useDataContext'
 
 const Countries = () => {
-  const { setContries } = useDataContext()
+  const { setCountries } = useDataContext()
 
   const { data: countries, error } = useFetcher({
     url: 'https://restcountries.com/v3.1/all'
@@ -13,14 +13,14 @@ const Countries = () => {
   if (error) return <p>{error.message}</p>
 
   useEffect(() => {
-    setContries(countries)
+    setCountries(countries)
   }, [])
 
   return (
     <section className='row gy-4'>
       {countries.map((index, key) => (
         <div key={key} className='col-12 col-sm-6 col-md-6 col-lg-3'>
-          <Link to={`${index.name.common}`}>
+          <Link to={`${index.name.common}`} state=''>
             <article className='card'>
               <img
                 loading='lazy'

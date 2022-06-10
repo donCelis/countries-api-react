@@ -1,25 +1,41 @@
+import { useState, useEffect } from 'react'
+import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form'
 import useAuthContext from '../hooks/useAuthContext'
+
+const ViewError = ({ sms }) => {
+  return (
+    <p className='text-danger m-0'>{sms}</p>
+  )
+}
 
 const Login = () => {
   const { loginAuth } = useAuthContext()
-
-  const LoginSchema = Yup.object().shape({
-    username: Yup.string().required('Campo obligatorio').trim(),
-    password: Yup.string().required('Campo obligatorio').trim()
-  })
+  const [error, setError] = useState('')
 
   const defaultValues = {
     username: 'kminchelle',
     password: '0lelplR'
   }
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setError('')
+    }, 3000)
+
+    return () => clearTimeout(timeout)
+  }, [error])
+
+  const LoginSchema = Yup.object().shape({
+    username: Yup.string().required('Campo obligatorio').trim(),
+    password: Yup.string().required('Campo obligatorio').trim()
+  })
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     reset
   } = useForm({
     resolver: yupResolver(LoginSchema),
@@ -30,8 +46,8 @@ const Login = () => {
     try {
       await loginAuth(username, password)
     } catch (error) {
+      setError(error.response.data.message)
       reset()
-      console.error(error)
     }
   }
 
@@ -47,8 +63,9 @@ const Login = () => {
       onSubmit={handleSubmit(handleLogin)}
       className='border border-primary rounded'
     >
-      <div>
-        <h3 className='m-0 text-center'>Login</h3>
+      <div className='text-center'>
+        <h3 className='m-0'>Login</h3>
+        {error && <ViewError sms={error} />}
       </div>
       <div>
         <input
@@ -57,7 +74,7 @@ const Login = () => {
           placeholder='Username'
           {...register('username')}
         />
-        <p className='text-danger m-0'>{errors.username?.message}</p>
+        {errors.username && <ViewError sms={errors.username?.message} />}
       </div>
       <div>
         <input
@@ -66,10 +83,12 @@ const Login = () => {
           placeholder='Password'
           {...register('password')}
         />
-        <p className='text-danger m-0'>{errors.password?.message}</p>
+        {errors.password && <ViewError sms={errors.password?.message} />}
       </div>
       <button className='w-100 btn btn-primary' type='submit'>
-        Login
+        {isSubmitting
+          ? <span className='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
+          : 'Login'}
       </button>
     </form>
   )

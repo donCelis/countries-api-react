@@ -1,15 +1,16 @@
 import '../styles/App.css'
-import NavBar from '../components/NavBar'
-import { Outlet } from 'react-router-dom'
 import { Suspense } from 'react'
+import { Outlet } from 'react-router-dom'
 import { DataProvider } from '../context/DataContext'
+import NavBar from '../components/NavBar'
+import Spinner from '../components/Spinner'
 
 function App () {
   return (
     <DataProvider>
       <NavBar />
       <div className='App container py-5'>
-        <Suspense fallback={<div>loading suspense...</div>}>
+        <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>
       </div>
