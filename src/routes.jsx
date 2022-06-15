@@ -9,6 +9,7 @@ import App from './pages/App'
 import Country from './components/Country'
 import Countries from './components/Countries'
 import Search from './components/Search'
+import { DataProvider } from './context/DataContext'
 
 const Paths = () => {
   const element = useRoutes([
@@ -29,7 +30,9 @@ const Paths = () => {
       path: '/countries',
       element: (
         <Private>
-          <App />
+          <DataProvider>
+            <App />
+          </DataProvider>
         </Private>
       ),
       children: [

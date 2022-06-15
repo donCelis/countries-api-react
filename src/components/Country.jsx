@@ -1,17 +1,17 @@
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import useFetcher from '../hooks/useFetcher'
+import useLocalData from '../hooks/useLocalData'
 
 const Country = () => {
   const { name = '' } = useParams()
-  const location = useLocation()
 
-  console.log(location)
-
-  const { data: country, error } = useFetcher(
-    { url: `https://restcountries.com/v3.1/name/${name}` }
-  )
+  const { data: country, error } = useFetcher(`https://restcountries.com/v3.1/name/${name}`)
 
   if (error) return <p>{error}</p>
+
+  const localCountries = JSON.parse(window.localStorage.getItem('countries')) || []
+
+  useLocalData(localCountries)
 
   return (
     <>

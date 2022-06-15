@@ -1,20 +1,13 @@
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
 import useFetcher from '../hooks/useFetcher'
-import useDataContext from '../hooks/useDataContext'
+import useLocalData from '../hooks/useLocalData'
 
 const Countries = () => {
-  const { setCountries } = useDataContext()
-
-  const { data: countries, error } = useFetcher({
-    url: 'https://restcountries.com/v3.1/all'
-  })
+  const { data: countries, error } = useFetcher('https://restcountries.com/v3.1/all')
 
   if (error) return <p>{error.message}</p>
 
-  useEffect(() => {
-    setCountries(countries)
-  }, [])
+  useLocalData(countries)
 
   return (
     <section className='row gy-4'>

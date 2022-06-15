@@ -3,9 +3,25 @@ import { createContext, useState } from 'react'
 const DataContext = createContext(null)
 
 const methods = () => {
-  const [countries, setCountries] = useState([])
+  const [countries, setCountries] = useState(() => {
+    const localCountries = JSON.parse(window.localStorage.getItem('countries')) || []
+    return localCountries.length === 0 ? [] : localCountries
+  })
+
   const [filterCountries, setFilterCountries] = useState([])
   const [sms, setSms] = useState({ type: '' })
+
+  const saveCountries = (countries) => {
+    const localCountries = JSON.parse(window.localStorage.getItem('countries')) || []
+    if (localCountries.length === 0) {
+      console.log('save')
+      setCountries(countries)
+      window.localStorage.setItem('countries', JSON.stringify(countries))
+    } else {
+      console.log('get')
+      setCountries(countries)
+    }
+  }
 
   // filter countries
   const handlefilterCountries = (value) => {
@@ -32,6 +48,7 @@ const methods = () => {
   return {
     countries,
     setCountries,
+    saveCountries,
     filterCountries,
     handlefilterCountries,
     sms

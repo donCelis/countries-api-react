@@ -12,7 +12,7 @@ const ViewError = ({ sms }) => {
 
 const Login = () => {
   const { loginAuth } = useAuthContext()
-  const [error, setError] = useState('')
+  const [failed, setFailed] = useState('')
 
   const defaultValues = {
     username: 'kminchelle',
@@ -21,11 +21,11 @@ const Login = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setError('')
+      setFailed('')
     }, 3000)
 
     return () => clearTimeout(timeout)
-  }, [error])
+  }, [failed])
 
   const LoginSchema = Yup.object().shape({
     username: Yup.string().required('Campo obligatorio').trim(),
@@ -46,26 +46,20 @@ const Login = () => {
     try {
       await loginAuth(username, password)
     } catch (error) {
-      setError(error.response.data.message)
+      if (error.code === 'ERR_NETWORK') setFailed(error.message)
+      if (error.code === 'ERR_BAD_REQUEST') setFailed(error.response.data.message)
       reset()
     }
   }
 
   return (
     <form
-      style={{
-        margin: '5rem auto',
-        width: '400px',
-        display: 'grid',
-        gap: '2rem',
-        padding: '2rem'
-      }}
       onSubmit={handleSubmit(handleLogin)}
-      className='border border-primary rounded'
+      className='login-form border border-primary rounded'
     >
       <div className='text-center'>
         <h3 className='m-0'>Login</h3>
-        {error && <ViewError sms={error} />}
+        {failed && <ViewError sms={failed} />}
       </div>
       <div>
         <input

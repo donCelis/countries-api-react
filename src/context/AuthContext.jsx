@@ -23,6 +23,7 @@ const methods = () => {
   const logoutAuth = () => {
     setSession(null)
     setAuthed(false)
+    window.localStorage.removeItem('countries')
   }
 
   useEffect(() => {
