@@ -1,17 +1,11 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import useDataContext from '../hooks/useDataContext'
+import useLocalData from '../hooks/useLocalData'
 
 const Search = () => {
-  const { filterCountries, sms, setCountries } = useDataContext()
+  const { filterCountries, sms, countries } = useDataContext()
 
-  useEffect(() => {
-    const localCountries = JSON.parse(window.localStorage.getItem('countries')) || []
-    if (localCountries.length > 0) {
-      console.log('run')
-      setCountries(localCountries)
-    }
-  }, [])
+  useLocalData(countries)
 
   if (sms.type === 'error') {
     return (

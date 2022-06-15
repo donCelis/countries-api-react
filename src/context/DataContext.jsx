@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react'
 
 const DataContext = createContext(null)
+DataContext.displayName = 'countries'
 
 const methods = () => {
   const [countries, setCountries] = useState(() => {
@@ -10,25 +11,25 @@ const methods = () => {
     return cache
   })
 
+  const isCache = countries.length === 0
+
   const [filterCountries, setFilterCountries] = useState([])
   const [sms, setSms] = useState({ type: '' })
 
-  const saveCountries = (countries) => {
-    const countriesCache = JSON.parse(window.localStorage.getItem('countries')) || []
-    if (countriesCache.length === 0) {
+  const saveCountries = (entries = []) => {
+    if (isCache) {
+      setCountries(entries)
+      window.localStorage.countries = JSON.stringify(entries)
       console.log('save')
-      setCountries(countries)
-      window.localStorage.setItem('countries', JSON.stringify(countries))
     } else {
+      setCountries(entries)
       console.log('get')
-      setCountries(countries)
     }
   }
 
   // filter countries
   const handlefilterCountries = (value) => {
     const filteredCountries = countries.filter((country) => {
-      // return country.name.common.toLowerCase().includes(value.toLowerCase())
       return country.name.common.toLowerCase().match(value.toLowerCase())
     })
 
@@ -49,7 +50,7 @@ const methods = () => {
 
   return {
     countries,
-    setCountries,
+    isCache,
     saveCountries,
     filterCountries,
     handlefilterCountries,

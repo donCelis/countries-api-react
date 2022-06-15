@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from 'react'
 import { isValidToken, setSession } from '../utils/jwt'
 
 const AuthContext = createContext(null)
+AuthContext.displayName = 'auth'
 
 const methods = () => {
   const [authed, setAuthed] = useState(false)

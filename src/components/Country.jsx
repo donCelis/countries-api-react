@@ -9,7 +9,7 @@ const Country = () => {
 
   if (error) return <p>{error.message}</p>
 
-  const countriesCache = JSON.parse(window.localStorage.getItem('countries')) || []
+  const countriesCache = JSON.parse(window.localStorage.countries || '[]')
 
   useLocalData(countriesCache)
 
