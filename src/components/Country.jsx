@@ -7,11 +7,11 @@ const Country = () => {
 
   const { data: country, error } = useFetcher(`https://restcountries.com/v3.1/name/${name}`)
 
-  if (error) return <p>{error}</p>
+  if (error) return <p>{error.message}</p>
 
-  const localCountries = JSON.parse(window.localStorage.getItem('countries')) || []
+  const countriesCache = JSON.parse(window.localStorage.getItem('countries')) || []
 
-  useLocalData(localCountries)
+  useLocalData(countriesCache)
 
   return (
     <>

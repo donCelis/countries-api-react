@@ -4,16 +4,18 @@ const DataContext = createContext(null)
 
 const methods = () => {
   const [countries, setCountries] = useState(() => {
-    const localCountries = JSON.parse(window.localStorage.getItem('countries')) || []
-    return localCountries.length === 0 ? [] : localCountries
+    const cache = window.localStorage.countries
+      ? JSON.parse(window.localStorage.countries)
+      : []
+    return cache
   })
 
   const [filterCountries, setFilterCountries] = useState([])
   const [sms, setSms] = useState({ type: '' })
 
   const saveCountries = (countries) => {
-    const localCountries = JSON.parse(window.localStorage.getItem('countries')) || []
-    if (localCountries.length === 0) {
+    const countriesCache = JSON.parse(window.localStorage.getItem('countries')) || []
+    if (countriesCache.length === 0) {
       console.log('save')
       setCountries(countries)
       window.localStorage.setItem('countries', JSON.stringify(countries))

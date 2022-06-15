@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import useDataContext from './useDataContext'
 
-const useLocalData = (countries) => {
+const useLocalData = (countries = '') => {
   const { saveCountries } = useDataContext()
 
   useEffect(() => {

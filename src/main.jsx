@@ -15,11 +15,11 @@ const root = document.getElementById('root')
 const container = createRoot(root)
 
 container.render(
-  <StrictMode>
+  <>
     <AuthProvider>
       <BrowserRouter>
         <Paths />
       </BrowserRouter>
     </AuthProvider>
-  </StrictMode>
+  </>
 )
