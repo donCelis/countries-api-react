@@ -66,6 +66,8 @@ const Login = () => {
           className='form-control'
           type='text'
           placeholder='Username'
+          autoComplete='off'
+          autoFocus
           {...register('username')}
         />
         {errors.username && <ViewError sms={errors.username?.message} />}

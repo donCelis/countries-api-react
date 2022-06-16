@@ -6,37 +6,32 @@ const Search = () => {
   const { filterCountries, sms } = useDataContext()
 
   const countriesCache = JSON.parse(window.localStorage.countries || '[]')
+  const searchCountriesCache = JSON.parse(
+    window.localStorage.searchCountries || '[]'
+  )
 
   useLocalData(countriesCache)
 
-  if (sms.type === 'error') {
+  if (sms.type === 'error' || searchCountriesCache.length === 0) {
     return (
       <>
-        <div className='alert alert-danger' role='alert'>
-          {sms.message}
+        <div className='text-center alert alert-danger' role='alert'>
+          {sms.message || 'Search not found'}
         </div>
-      </>
-    )
-  }
-
-  if (sms.type === 'success') {
-    return (
-      <>
-        <div className='alert alert-success' role='alert'>
-          {sms.message} <span>{filterCountries.length}</span>
-        </div>
-        <section className='row gy-4'>
-          <Grid entries={filterCountries} path='/countries/' />
-        </section>
       </>
     )
   }
 
   return (
     <>
-      <div className='alert alert-info' role='alert'>
-        Search for a country
+      <div className='text-center alert alert-success' role='alert'>
+        {sms.type === 'success'
+          ? (<>{sms.message} <span>{filterCountries.length}</span></>)
+          : 'Search for a country'}
       </div>
+      <section className='row gy-4'>
+        <Grid entries={searchCountriesCache} path='/countries/' />
+      </section>
     </>
   )
 }

@@ -34,12 +34,14 @@ const methods = () => {
     })
 
     if (filteredCountries.length === 0) {
+      window.localStorage.searchCountries = JSON.stringify([])
       setFilterCountries([])
       setSms({
         type: 'error',
         message: 'Search not found'
       })
     } else {
+      window.localStorage.searchCountries = JSON.stringify(filteredCountries)
       setFilterCountries(filteredCountries)
       setSms({
         type: 'success',

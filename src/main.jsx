@@ -10,8 +10,8 @@ import Paths from './routes'
 // contextProvider
 import { AuthProvider } from './context/AuthContext'
 
-const root = document.getElementById('root')
-const container = createRoot(root)
+const app = document.getElementById('app')
+const container = createRoot(app)
 
 container.render(
   <>

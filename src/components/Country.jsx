@@ -35,7 +35,11 @@ const Country = () => {
   return (
     <section className='country-details'>
       <div className='mb-5'>
-        <Link className='btn-back d-inline-block' to='/countries' aria-label='previous page'>
+        <Link
+          className='btn-back d-inline-block'
+          to='/countries'
+          aria-label='previous page'
+        >
           Back
         </Link>
       </div>

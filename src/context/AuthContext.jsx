@@ -25,6 +25,7 @@ const methods = () => {
     setSession(null)
     setAuthed(false)
     window.localStorage.removeItem('countries')
+    window.localStorage.removeItem('searchCountries')
   }
 
   useEffect(() => {
