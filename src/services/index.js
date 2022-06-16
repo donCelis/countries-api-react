@@ -1,12 +1,16 @@
 import axios from 'axios'
 
-const baseUrl = 'https://restcountries.com/v3.1'
+const fetcher = async (...args) => {
+  const res = await axios.get(...args)
 
-const getData = async (name = '') => {
-  const setName = name ? `/name/${name}` : '/all'
+  if (!res.status) {
+    const error = new Error('An error occurred while fetching the data.')
+    error.info = await res.data
+    error.status = res.status
+    throw error
+  }
 
-  const req = await axios.get(baseUrl + setName)
-  return req
+  return res.data
 }
 
-export { getData }
+export default fetcher
