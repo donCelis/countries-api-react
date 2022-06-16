@@ -1,0 +1,18 @@
+.form-control,
+.form-control:focus {
+  background: var(--dark-blue);
+  color: var(--white);
+  padding: 1rem;
+  padding-left: 0;
+  border: transparent;
+  box-shadow: none;
+}
+.form-control::placeholder{
+  color: var(--white);
+}
+.input-group-text{
+  border: transparent;
+  background: var(--dark-blue);
+  color: var(--white);
+  padding: .6rem 1rem;
+}

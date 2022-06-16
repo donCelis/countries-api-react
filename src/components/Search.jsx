@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
 import { useDataContext } from '../context/DataContext'
 import useLocalData from '../hooks/useLocalData'
+import Grid from '../layout/Grid'
 
 const Search = () => {
   const { filterCountries, sms } = useDataContext()
@@ -26,23 +26,7 @@ const Search = () => {
           {sms.message} <span>{filterCountries.length}</span>
         </div>
         <section className='row gy-4'>
-          {filterCountries.map((index, key) => (
-            <div key={key} className='col-12 col-sm-6 col-md-6 col-lg-3'>
-              <Link to={`/countries/${index.name.common}`}>
-                <article className='card'>
-                  <img
-                    loading='lazy'
-                    className='card-img-top'
-                    src={index.flags.svg}
-                    alt={index.name.common}
-                  />
-                  <div className='card-body'>
-                    <p className='card-title'>{index.name.common}</p>
-                  </div>
-                </article>
-              </Link>
-            </div>
-          ))}
+          <Grid entries={filterCountries} path='/countries/' />
         </section>
       </>
     )

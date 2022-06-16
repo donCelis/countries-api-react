@@ -9,7 +9,7 @@ function App () {
   return (
     <DataProvider>
       <NavBar />
-      <div className='App container py-5'>
+      <div className='container py-5'>
         <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>

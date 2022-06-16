@@ -1,0 +1,32 @@
+/* Country Details */
+.btn-back {
+  color: var(--white);
+  background: var(--dark-blue);
+  text-decoration: none;
+  padding: 0.6rem 2rem;
+  border-radius: 5px;
+  display: inline-block;
+}
+.btn-back:hover {
+  color: var(--white);
+}
+.flag {
+  width: 100%;
+}
+.country-details strong {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.borders-list {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  list-style: none;
+  padding-inline-start: 0;
+  gap: 1rem;
+}
+.borders-list li {
+  background: var(--dark-blue);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}

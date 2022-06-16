@@ -1,10 +1,11 @@
+import '../styles/grid.css'
 import { Link } from 'react-router-dom'
 
-const Grid = ({ entries = [] }) => {
+const Grid = ({ entries = [], path = '' }) => {
   return entries.map((index, key) => (
     <div key={key} className='col-12 col-sm-6 col-md-6 col-lg-3'>
-      <Link to={`${index?.name.common}`}>
-        <article className='card'>
+      <Link to={`${path}${index?.name.common}`} className='card text-decoration-none'>
+        <article>
           <img
             loading='lazy'
             className='card-img-top'
