@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useState, useContext } from 'react'
 
 const DataContext = createContext(null)
 DataContext.displayName = 'countries'
@@ -67,4 +67,8 @@ const DataProvider = ({ children }) => {
   )
 }
 
-export { DataContext, DataProvider }
+const useDataContext = () => {
+  return useContext(DataContext)
+}
+
+export { useDataContext, DataProvider }

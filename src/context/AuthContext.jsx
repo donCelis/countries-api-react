@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState, useContext } from 'react'
 import { isValidToken, setSession } from '../utils/jwt'
 
 const AuthContext = createContext(null)
@@ -59,4 +59,8 @@ const AuthProvider = ({ children }) => {
   )
 }
 
-export { AuthContext, AuthProvider }
+const useAuthContext = () => {
+  return useContext(AuthContext)
+}
+
+export { AuthProvider, useAuthContext }

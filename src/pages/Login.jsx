@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import useAuthContext from '../hooks/useAuthContext'
+import { useAuthContext } from '../context/AuthContext'
 
 const ViewError = ({ sms }) => {
   return (

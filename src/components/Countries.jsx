@@ -1,4 +1,4 @@
-import useDataContext from '../hooks/useDataContext'
+import { useDataContext } from '../context/DataContext'
 import useFetcher from '../hooks/useFetcher'
 import useLocalData from '../hooks/useLocalData'
 import Grid from '../layout/Grid'

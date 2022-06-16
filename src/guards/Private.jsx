@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 // hooks
-import useAuthContext from '../hooks/useAuthContext'
+import { useAuthContext } from '../context/AuthContext'
 // pages
 import Login from '../pages/Login'
 
