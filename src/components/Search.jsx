@@ -3,9 +3,11 @@ import useDataContext from '../hooks/useDataContext'
 import useLocalData from '../hooks/useLocalData'
 
 const Search = () => {
-  const { filterCountries, sms, countries } = useDataContext()
+  const { filterCountries, sms } = useDataContext()
 
-  useLocalData(countries)
+  const countriesCache = JSON.parse(window.localStorage.countries || '[]')
+
+  useLocalData(countriesCache)
 
   if (sms.type === 'error') {
     return (
