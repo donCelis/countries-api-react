@@ -1,6 +1,8 @@
 import { useDataContext } from '../context/DataContext'
 import useLocalData from '../hooks/useLocalData'
 import Grid from '../layout/Grid'
+import Page from '../layout/Page'
+import ViewSms from './common/ViewSms'
 
 const Search = () => {
   const { filterCountries, sms } = useDataContext()
@@ -12,27 +14,21 @@ const Search = () => {
 
   useLocalData(countriesCache)
 
-  if (sms.type === 'error' || searchCountriesCache.length === 0) {
-    return (
-      <>
-        <div className='text-center alert alert-danger' role='alert'>
-          {sms.message || 'Search not found'}
-        </div>
-      </>
-    )
-  }
+  const stateError = sms.type === 'error' || searchCountriesCache.length === 0
 
   return (
-    <>
-      <div className='text-center alert alert-success' role='alert'>
-        {sms.type === 'success'
-          ? (<>{sms.message} <span>{filterCountries.length}</span></>)
-          : 'Search for a country'}
-      </div>
-      <section className='row gy-4'>
+    <Page title='Search' name='search'>
+      {stateError
+        ? <ViewSms sms={sms?.message} alert='danger' />
+        : (
+          <ViewSms sms={sms?.message || 'Search for a country'} alert='success'>
+            <span>{filterCountries.length || searchCountriesCache.length}</span>
+          </ViewSms>
+          )}
+      {!stateError && (
         <Grid entries={searchCountriesCache} path='/countries/' />
-      </section>
-    </>
+      )}
+    </Page>
   )
 }
 export default Search

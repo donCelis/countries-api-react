@@ -2,12 +2,13 @@ import '../styles/country.css'
 import { Link, useParams } from 'react-router-dom'
 import useFetcher from '../hooks/useFetcher'
 import useLocalData from '../hooks/useLocalData'
+import Page from '../layout/Page'
 
 const Country = () => {
   const { name: cname = '' } = useParams()
 
   const { data: country, error } = useFetcher(
-    `https://restcountries.com/v3.1/name/${cname}`
+    `https://restcountries.com/v3.1/alpha/${cname}`
   )
 
   if (error) return <p>{error.message}</p>
@@ -33,7 +34,7 @@ const Country = () => {
   const objKeyLang = Object.keys(languages)[0]
 
   return (
-    <section className='country-details'>
+    <Page title={name.common} name='country-details'>
       <div className='mb-5'>
         <Link
           className='btn-back d-inline-block'
@@ -113,7 +114,7 @@ const Country = () => {
           </article>
         </div>
       </div>
-    </section>
+    </Page>
   )
 }
 export default Country

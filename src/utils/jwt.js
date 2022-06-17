@@ -4,9 +4,8 @@ import axios from 'axios'
 // ----------------------------------------------------------------------
 
 const isValidToken = (accessToken) => {
-  if (!accessToken) {
-    return false
-  }
+  if (!accessToken) return false
+
   const { exp } = jwtDecode(accessToken)
 
   const currentTime = Date.now() / 1000

@@ -1,12 +1,12 @@
-header{
+header {
   background: var(--dark-blue);
 }
 
-header section{
+header section {
   align-items: center;
   justify-content: space-between;
 }
 
-header h4{
+header h4 {
   font-weight: 600;
 }

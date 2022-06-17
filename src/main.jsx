@@ -9,16 +9,17 @@ import Paths from './routes'
 
 // contextProvider
 import { AuthProvider } from './context/AuthContext'
+import { HelmetProvider } from 'react-helmet-async'
 
 const app = document.getElementById('app')
 const container = createRoot(app)
 
 container.render(
-  <>
+  <HelmetProvider>
     <AuthProvider>
       <BrowserRouter>
         <Paths />
       </BrowserRouter>
     </AuthProvider>
-  </>
+  </HelmetProvider>
 )

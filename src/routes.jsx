@@ -1,4 +1,4 @@
-import { Link, Navigate, useRoutes } from 'react-router-dom'
+import { Navigate, useRoutes } from 'react-router-dom'
 // auth
 import Private from './guards/Private'
 import Public from './guards/Public'
@@ -9,6 +9,7 @@ import App from './pages/App'
 import Country from './components/Country'
 import Countries from './components/Countries'
 import Search from './components/Search'
+import NotFound from './pages/NotFound'
 
 const Paths = () => {
   const element = useRoutes([
@@ -49,12 +50,7 @@ const Paths = () => {
     },
     {
       path: '/404',
-      element: (
-        <div className='container text-center'>
-          <p>Page not found</p>
-          <Link to='/'>Back to home</Link>
-        </div>
-      )
+      element: <NotFound />
     },
     {
       path: '*',

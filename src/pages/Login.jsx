@@ -1,14 +1,11 @@
+import '../styles/login.css'
 import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useAuthContext } from '../context/AuthContext'
-
-const ViewError = ({ sms }) => {
-  return (
-    <p className='text-danger m-0'>{sms}</p>
-  )
-}
+import Page from '../layout/Page'
+import ViewError from '../components/common/ViewError'
 
 const Login = () => {
   const { loginAuth } = useAuthContext()
@@ -53,40 +50,44 @@ const Login = () => {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(handleLogin)}
-      className='login-form border border-primary rounded'
-    >
-      <div className='text-center'>
-        <h3 className='m-0'>Login</h3>
-        {failed && <ViewError sms={failed} />}
-      </div>
-      <div>
-        <input
-          className='form-control'
-          type='text'
-          placeholder='Username'
-          autoComplete='off'
-          autoFocus
-          {...register('username')}
-        />
-        {errors.username && <ViewError sms={errors.username?.message} />}
-      </div>
-      <div>
-        <input
-          className='form-control'
-          type='password'
-          placeholder='Password'
-          {...register('password')}
-        />
-        {errors.password && <ViewError sms={errors.password?.message} />}
-      </div>
-      <button className='w-100 btn btn-primary' type='submit'>
-        {isSubmitting
-          ? <span className='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
-          : 'Login'}
-      </button>
-    </form>
+    <Page title='Login'>
+      <section className='login'>
+        <form
+          onSubmit={handleSubmit(handleLogin)}
+          className='login-form border border-primary rounded'
+        >
+          <div className='text-center'>
+            <h3 className='m-0'>Login</h3>
+            {failed && <ViewError sms={failed} />}
+          </div>
+          <div>
+            <input
+              className='form-control'
+              type='text'
+              placeholder='Username'
+              autoComplete='off'
+              autoFocus
+              {...register('username')}
+            />
+            {errors.username && <ViewError sms={errors.username?.message} />}
+          </div>
+          <div>
+            <input
+              className='form-control'
+              type='password'
+              placeholder='Password'
+              {...register('password')}
+            />
+            {errors.password && <ViewError sms={errors.password?.message} />}
+          </div>
+          <button className='w-100 btn btn-primary' type='submit'>
+            {isSubmitting
+              ? <span className='spinner-border spinner-border-sm' role='status' aria-hidden='true' />
+              : 'Login'}
+          </button>
+        </form>
+      </section>
+    </Page>
   )
 }
 export default Login

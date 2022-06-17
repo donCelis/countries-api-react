@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDataContext } from '../context/DataContext'
-import { useAuthContext } from '../context/AuthContext'
+import { useDataContext } from '../../context/DataContext'
+import { useAuthContext } from '../../context/AuthContext'
 
 const NavBar = () => {
   const searchRef = useRef()

@@ -2,6 +2,7 @@ import { useDataContext } from '../context/DataContext'
 import useFetcher from '../hooks/useFetcher'
 import useLocalData from '../hooks/useLocalData'
 import Grid from '../layout/Grid'
+import Page from '../layout/Page'
 
 const Countries = () => {
   const { countries, isCache } = useDataContext()
@@ -13,9 +14,9 @@ const Countries = () => {
   useLocalData(isCache ? data : countries)
 
   return (
-    <section className='row gy-4'>
+    <Page title='List' name='countries'>
       <Grid entries={isCache ? data : countries} />
-    </section>
+    </Page>
   )
 }
 
