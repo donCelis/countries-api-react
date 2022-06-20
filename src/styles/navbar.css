@@ -1,0 +1,8 @@
+.navbar {
+  background: var(--dark-blue);
+  padding: 1rem 0;
+}
+.navbar h3{
+  margin: 0;
+  margin-right: 1rem;
+}

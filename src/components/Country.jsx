@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import useFetcher from '../hooks/useFetcher'
 import useLocalData from '../hooks/useLocalData'
 import Page from '../layout/Page'
+import Borders from './common/Borders'
 
 const Country = () => {
   const { name: cname = '' } = useParams()
@@ -98,17 +99,7 @@ const Country = () => {
             <div className='row'>
               <div>
                 <p>Border Countries: </p>
-                {!borders
-                  ? (
-                    <p>No borders</p>
-                    )
-                  : (
-                    <ul className='borders-list'>
-                      {borders.map((element, id) => (
-                        <li key={id}>{element}</li>
-                      ))}
-                    </ul>
-                    )}
+                <Borders borders={borders} />
               </div>
             </div>
           </article>

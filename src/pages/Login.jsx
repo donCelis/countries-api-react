@@ -57,7 +57,7 @@ const Login = () => {
           className='login-form border border-primary rounded'
         >
           <div className='text-center'>
-            <h3 className='m-0'>Login</h3>
+            <h3 className='m-0'>Countries API</h3>
             {failed && <ViewError sms={failed} />}
           </div>
           <div>

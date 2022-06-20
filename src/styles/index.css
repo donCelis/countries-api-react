@@ -6,6 +6,11 @@
   --white: hsl(0, 0%, 100%);
 }
 
+html,
+body {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: "Nunito Sans", sans-serif;
@@ -15,7 +20,19 @@ body {
   color: var(--white);
 }
 
-.card-img-top {
-  height: 10rem;
-  object-fit: cover;
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  cursor: pointer;
+  font-size: 2em;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
 }
