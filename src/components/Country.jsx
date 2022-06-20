@@ -4,6 +4,7 @@ import useFetcher from '../hooks/useFetcher'
 import useLocalData from '../hooks/useLocalData'
 import Page from '../layout/Page'
 import Borders from './common/Borders'
+import listFormat from '../utils/listFormat'
 
 const Country = () => {
   const { name: cname = '' } = useParams()
@@ -31,8 +32,8 @@ const Country = () => {
     currencies
   } = country[0]
 
-  const objKey = Object.keys(currencies)[0]
-  const objKeyLang = Object.keys(languages)[0]
+  const objValueCurrency = Object.values(currencies).map(item => item.name)
+  const objValueLang = Object.values(languages)
 
   return (
     <Page title={name.common} name='country-details'>
@@ -87,11 +88,11 @@ const Country = () => {
                   </p>
                   <p>
                     <strong>currencies: </strong>
-                    {currencies[objKey].name}
+                    {listFormat(objValueCurrency)}
                   </p>
                   <p>
                     <strong>languages: </strong>
-                    {languages[objKeyLang]}
+                    {listFormat(objValueLang)}
                   </p>
                 </div>
               </div>
