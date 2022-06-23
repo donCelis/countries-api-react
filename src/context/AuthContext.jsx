@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { createContext, useEffect, useState, useContext } from 'react'
+import { useMemo, createContext, useEffect, useState, useContext } from 'react'
 import { isValidToken, setSession } from '../utils/jwt'
 
 const AuthContext = createContext(null)
 AuthContext.displayName = 'auth'
 
-const methods = () => {
+const AuthProvider = ({ children }) => {
   const [authed, setAuthed] = useState(false)
   const [isInitialized, setIsInitialized] = useState(false)
 
@@ -43,16 +43,15 @@ const methods = () => {
     }
   }, [])
 
-  return {
-    loginAuth,
-    logoutAuth,
-    authed,
-    isInitialized
-  }
-}
+  const initialValues = useMemo(
+    () => ({
+      authed,
+      loginAuth,
+      logoutAuth,
+      isInitialized
+    }), [authed]
+  )
 
-const AuthProvider = ({ children }) => {
-  const initialValues = methods()
   return (
     <AuthContext.Provider value={initialValues}>
       {children}
