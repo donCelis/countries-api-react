@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-const useIntersectionObserver = (ref, options) => {
+const useIntersectionObserver = (options) => {
+  const ref = useRef(null)
   const [isIntersecting, setIsIntersecting] = useState(false)
 
   useEffect(() => {
@@ -16,7 +17,17 @@ const useIntersectionObserver = (ref, options) => {
     }
   }, [ref, options])
 
-  return isIntersecting
+  return { ref, isIntersecting }
 }
 
 export default useIntersectionObserver
+
+// use the hook to observe the element
+/*
+const { ref, isIntersecting } = useInterSectionObserver({
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.5,
+  triggerOnce: true / false
+})
+ */

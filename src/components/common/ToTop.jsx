@@ -1,17 +1,7 @@
-import { useEffect, useState } from 'react'
+import useVisible from '../../hooks/useVisible'
 
 const ToTop = () => {
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > 900)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [isVisible])
+  const isVisiable = useVisible()
 
   const handleClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -19,7 +9,7 @@ const ToTop = () => {
 
   return (
     <div
-      className={`to-top ${isVisible ? 'visible' : ''}`}
+      className={`to-top ${isVisiable ? 'visible' : ''}`}
       onClick={handleClick}
     >
       ☝️
