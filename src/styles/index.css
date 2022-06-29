@@ -27,12 +27,13 @@ body {
   z-index: 999;
   cursor: pointer;
   font-size: 2em;
-  transition: opacity 0.3s ease-in-out;
-  opacity: 0;
-  visibility: hidden;
 }
 
-.visible {
-  opacity: 1;
-  visibility: visible;
+.box{
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  background-color: brown;
+  bottom: -350px;
+  left: 20px;
 }

@@ -5,6 +5,7 @@ import useLocalData from '../hooks/useLocalData'
 import Page from '../layout/Page'
 import Borders from './common/Borders'
 import listFormat from '../utils/listFormat'
+import { motion } from 'framer-motion'
 
 const Country = () => {
   const { name: cname = '' } = useParams()
@@ -46,7 +47,14 @@ const Country = () => {
           Back
         </Link>
       </div>
-      <div className='row gx-md-5 gy-5 gy-lg-0 align-items-center'>
+      <motion.div
+        className='row gx-md-5 gy-5 gy-lg-0 align-items-center'
+        animate={{
+          y: [100, 0],
+          opacity: [0, 1],
+          transition: { duration: 0.4 }
+        }}
+      >
         <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
           <div>
             <img className='flag img-fluid' src={flags.svg} alt={name.common} />
@@ -105,7 +113,7 @@ const Country = () => {
             </div>
           </article>
         </div>
-      </div>
+      </motion.div>
     </Page>
   )
 }

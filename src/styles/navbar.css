@@ -6,3 +6,6 @@
   margin: 0;
   margin-right: 1rem;
 }
+.navbar-toggler:focus{
+  box-shadow: none;
+}

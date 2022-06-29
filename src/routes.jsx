@@ -10,9 +10,10 @@ import Country from './components/Country'
 import Countries from './components/Countries'
 import Search from './components/Search'
 import NotFound from './pages/NotFound'
+import { AnimatePresence } from 'framer-motion'
 
 const Paths = () => {
-  const element = useRoutes([
+  const router = useRoutes([
     {
       path: '/',
       element: <Navigate to='/login' replace />
@@ -58,7 +59,11 @@ const Paths = () => {
     }
   ])
 
-  return element
+  return (
+    <AnimatePresence exitBeforeEnter>
+      {router}
+    </AnimatePresence>
+  )
 }
 
 export default Paths
