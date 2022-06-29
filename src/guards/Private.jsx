@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
+import Spinner from '../components/common/Spinner'
 // hooks
 import { useAuthContext } from '../context/AuthContext'
 // pages
@@ -13,15 +14,14 @@ export default function AuthGuard ({ children }) {
   const [requestedLocation, setRequestedLocation] = useState(null)
 
   if (!isInitialized) {
-    return <p>...Loading</p>
+    return <Spinner />
   }
 
   if (!authed) {
     if (pathname !== requestedLocation) {
       setRequestedLocation(pathname)
     }
-    // return <Login />
-    return <Navigate to='/login' replace />
+    return <Login />
   }
 
   if (requestedLocation && pathname !== requestedLocation) {

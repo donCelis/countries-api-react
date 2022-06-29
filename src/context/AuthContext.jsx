@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useMemo, createContext, useEffect, useState, useContext } from 'react'
+import { createContext, useEffect, useState, useContext } from 'react'
 import { isValidToken, setSession } from '../utils/jwt'
 
 const AuthContext = createContext(null)
@@ -43,14 +43,12 @@ const AuthProvider = ({ children }) => {
     }
   }, [])
 
-  const initialValues = useMemo(
-    () => ({
-      authed,
-      loginAuth,
-      logoutAuth,
-      isInitialized
-    }), [authed]
-  )
+  const initialValues = {
+    authed,
+    loginAuth,
+    logoutAuth,
+    isInitialized
+  }
 
   return (
     <AuthContext.Provider value={initialValues}>
