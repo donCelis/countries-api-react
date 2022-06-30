@@ -1,9 +1,9 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { DataProvider } from '../context/DataContext'
-import NavBar from '../components/common/NavBar'
 import Spinner from '../components/common/Spinner'
 import ToTop from '../components/common/ToTop'
+import NavBar from '../components/NavBar'
 
 function App () {
   return (

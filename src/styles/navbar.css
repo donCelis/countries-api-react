@@ -2,10 +2,15 @@
   background: var(--dark-blue);
   padding: 1rem 0;
 }
-.navbar h3{
+.navbar h3 {
   margin: 0;
   margin-right: 1rem;
 }
-.navbar-toggler:focus{
+.navbar-toggler:focus {
   box-shadow: none;
+}
+.dropdown-menu {
+  right: 0;
+  display: block;
+  transform-origin: top right;
 }

@@ -15,11 +15,11 @@ const app = document.getElementById('app')
 const container = createRoot(app)
 
 container.render(
-  <HelmetProvider>
-    <AuthProvider>
+  <AuthProvider>
+    <HelmetProvider>
       <BrowserRouter>
         <Paths />
       </BrowserRouter>
-    </AuthProvider>
-  </HelmetProvider>
+    </HelmetProvider>
+  </AuthProvider>
 )

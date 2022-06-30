@@ -12,7 +12,7 @@ export function SearchForm () {
     if (searchRef.current.value !== '') {
       handlefilterCountries(searchRef.current.value)
       // await searchCountries(searchRef.current.value)
-      navigate('/countries/search', { replace: true })
+      navigate('/countries/search')
       event.target.reset()
     }
   }

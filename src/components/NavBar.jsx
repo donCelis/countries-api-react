@@ -1,23 +1,9 @@
-import '../../styles/navbar.css'
+import '../styles/navbar.css'
 import { useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuthContext } from '../../context/AuthContext'
-import Avatar from './Avatar'
+import AccountPopover from './common/AccountPopover'
 
 const NavBar = () => {
   const toggleRef = useRef(null)
-  const navigate = useNavigate()
-
-  const { authed, logoutAuth, user } = useAuthContext()
-
-  const handleLogout = async () => {
-    try {
-      await logoutAuth()
-      navigate('/login', { replace: true })
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
   const handleToggle = () => {
     toggleRef.current.classList.toggle('show')
@@ -39,19 +25,11 @@ const NavBar = () => {
           <span className='navbar-toggler-icon' />
         </button>
         <div ref={toggleRef} className='collapse navbar-collapse gap-4' id='mainNavbar'>
-          <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-            {authed && (
-              <li className='nav-item'>
-                <button
-                  onClick={handleLogout}
-                  className='nav-link btn border-0'
-                >
-                  Logout
-                </button>
-              </li>
-            )}
+          <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
+            <li className='nav-item dropdown'>
+              <AccountPopover />
+            </li>
           </ul>
-          <Avatar img={user?.image} />
         </div>
       </div>
     </nav>
