@@ -26,7 +26,7 @@ const ToTop = () => {
   }
 
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       {isVisible && (
         <motion.div
           initial='hidden'

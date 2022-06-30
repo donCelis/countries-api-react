@@ -1,5 +1,5 @@
 import '../styles/login.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
@@ -66,7 +66,9 @@ const Login = () => {
     }
   }
 
-  controls.start('visible')
+  useEffect(() => {
+    controls.start('visible')
+  }, [])
 
   return (
     <Page title='Login' name='login'>

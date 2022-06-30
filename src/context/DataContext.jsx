@@ -20,10 +20,8 @@ const methods = () => {
     if (isCache) {
       setCountries(entries)
       window.localStorage.countries = JSON.stringify(entries)
-      console.log('save')
     } else {
       setCountries(entries)
-      console.log('get')
     }
   }
 
