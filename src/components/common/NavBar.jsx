@@ -1,25 +1,14 @@
 import '../../styles/navbar.css'
 import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDataContext } from '../../context/DataContext'
 import { useAuthContext } from '../../context/AuthContext'
+import Avatar from './Avatar'
 
 const NavBar = () => {
-  const searchRef = useRef()
   const toggleRef = useRef(null)
   const navigate = useNavigate()
 
-  const { authed, logoutAuth } = useAuthContext()
-  const { handlefilterCountries } = useDataContext()
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    if (searchRef.current.value !== '') {
-      handlefilterCountries(searchRef.current.value)
-      event.target.reset()
-      navigate('/countries/search', { replace: true })
-    }
-  }
+  const { authed, logoutAuth, user } = useAuthContext()
 
   const handleLogout = async () => {
     try {
@@ -49,7 +38,7 @@ const NavBar = () => {
         >
           <span className='navbar-toggler-icon' />
         </button>
-        <div ref={toggleRef} className='collapse navbar-collapse' id='mainNavbar'>
+        <div ref={toggleRef} className='collapse navbar-collapse gap-4' id='mainNavbar'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
             {authed && (
               <li className='nav-item'>
@@ -62,18 +51,7 @@ const NavBar = () => {
               </li>
             )}
           </ul>
-          <form className='d-flex' onSubmit={handleSubmit}>
-            <input
-              ref={searchRef}
-              className='form-control me-2'
-              type='search'
-              placeholder='Search country'
-              aria-label='Search'
-            />
-            <button className='btn btn-outline-success' type='submit'>
-              🔍
-            </button>
-          </form>
+          <Avatar img={user?.image} />
         </div>
       </div>
     </nav>

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { createContext, useState, useContext } from 'react'
 
 const DataContext = createContext(null)
@@ -14,14 +15,34 @@ const methods = () => {
   const isCache = countries.length === 0
 
   const [filterCountries, setFilterCountries] = useState([])
+  const [search, setSearch] = useState([])
   const [sms, setSms] = useState({ type: '' })
 
+  // save countries to localStorage
   const saveCountries = (entries = []) => {
     if (isCache) {
       setCountries(entries)
       window.localStorage.countries = JSON.stringify(entries)
     } else {
       setCountries(entries)
+    }
+  }
+
+  const searchCountries = async (search) => {
+    try {
+      const { data } = await axios.get(`https://restcountries.com/v3.1/name/${search}`)
+      window.localStorage.searchCountries = JSON.stringify(data)
+      setSearch(data)
+      setSms({
+        type: 'success',
+        message: 'Countries found'
+      })
+    } catch (error) {
+      setSearch([])
+      setSms({
+        type: 'error',
+        message: 'Search not found 404'
+      })
     }
   }
 
@@ -49,6 +70,8 @@ const methods = () => {
   }
 
   return {
+    search,
+    searchCountries,
     countries,
     isCache,
     saveCountries,

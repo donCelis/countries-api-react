@@ -3,6 +3,7 @@ import useFetcher from '../hooks/useFetcher'
 import useLocalData from '../hooks/useLocalData'
 import Grid from '../layout/Grid'
 import Page from '../layout/Page'
+import { SearchForm } from './common/SearchForm'
 
 const Countries = () => {
   const { countries, isCache } = useDataContext()
@@ -15,6 +16,9 @@ const Countries = () => {
 
   return (
     <Page title='List' name='countries'>
+      <div className='row mb-5'>
+        <SearchForm />
+      </div>
       <Grid entries={isCache ? data : countries} />
     </Page>
   )
