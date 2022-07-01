@@ -5,18 +5,7 @@ import useLocalData from '../hooks/useLocalData'
 import Page from '../layout/Page'
 import Borders from './common/Borders'
 import listFormat from '../utils/listFormat'
-import { motion } from 'framer-motion'
-
-/* const animations = {
-  initial: { opacity: 0, y: 100 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -100 }
-} */
-const animations = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 }
-}
+import Animate from './Animate'
 
 const Country = () => {
   const { name: cname = '' } = useParams()
@@ -58,73 +47,68 @@ const Country = () => {
           Back
         </Link>
       </div>
-      <motion.div
-        className='row gx-md-5 gy-5 gy-lg-0 align-items-center'
-        variants={animations}
-        initial='initial'
-        animate='animate'
-        exit='exit'
-        transition={{ duration: 0.4 }}
-      >
-        <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
-          <div>
-            <img className='flag img-fluid' src={flags.svg} alt={name.common} />
+      <Animate>
+        <section className='row gx-md-5 gy-5 gy-lg-0 align-items-center'>
+          <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
+            <div>
+              <img className='flag img-fluid' src={flags.svg} alt={name.common} />
+            </div>
           </div>
-        </div>
-        <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
-          <article>
-            <h3>{name.common}</h3>
-            <div className='row my-5'>
-              <div className='col-6'>
-                <div>
-                  <p>
-                    <strong>native name: </strong>
-                    {name.official}
-                  </p>
-                  <p>
-                    <strong>population: </strong>
-                    {population.toLocaleString('de-DE')}
-                  </p>
-                  <p>
-                    <strong>region: </strong>
-                    {region}
-                  </p>
-                  <p>
-                    <strong>subregion: </strong>
-                    {subregion}
-                  </p>
-                  <p>
-                    <strong>capital: </strong>
-                    {capital}
-                  </p>
+          <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
+            <article>
+              <h3>{name.common}</h3>
+              <div className='row my-5'>
+                <div className='col-6'>
+                  <div>
+                    <p>
+                      <strong>native name: </strong>
+                      {name.official}
+                    </p>
+                    <p>
+                      <strong>population: </strong>
+                      {population.toLocaleString('de-DE')}
+                    </p>
+                    <p>
+                      <strong>region: </strong>
+                      {region}
+                    </p>
+                    <p>
+                      <strong>subregion: </strong>
+                      {subregion}
+                    </p>
+                    <p>
+                      <strong>capital: </strong>
+                      {capital}
+                    </p>
+                  </div>
+                </div>
+                <div className='col-6'>
+                  <div>
+                    <p>
+                      <strong>top level domain: </strong>
+                      {tld}
+                    </p>
+                    <p>
+                      <strong>currencies: </strong>
+                      {listFormat(objValueCurrency)}
+                    </p>
+                    <p>
+                      <strong>languages: </strong>
+                      {listFormat(objValueLang)}
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div className='col-6'>
+              <div className='row'>
                 <div>
-                  <p>
-                    <strong>top level domain: </strong>
-                    {tld}
-                  </p>
-                  <p>
-                    <strong>currencies: </strong>
-                    {listFormat(objValueCurrency)}
-                  </p>
-                  <p>
-                    <strong>languages: </strong>
-                    {listFormat(objValueLang)}
-                  </p>
+                  <p>Border Countries: </p>
+                  <Borders borders={borders} />
                 </div>
               </div>
-            </div>
-            <div className='row'>
-              <div>
-                <p>Border Countries: </p>
-                <Borders borders={borders} />
-              </div>
-            </div>
-          </article>
-        </div>
-      </motion.div>
+            </article>
+          </div>
+        </section>
+      </Animate>
     </Page>
   )
 }
