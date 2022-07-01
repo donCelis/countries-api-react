@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDataContext } from '../../context/DataContext'
 
-export function SearchForm () {
+const SearchForm = () => {
   const searchRef = useRef()
   const navigate = useNavigate()
   const { handlefilterCountries, searchCountries } = useDataContext()
@@ -32,3 +32,4 @@ export function SearchForm () {
     </form>
   )
 }
+export default SearchForm

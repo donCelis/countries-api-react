@@ -7,6 +7,17 @@ import Borders from './common/Borders'
 import listFormat from '../utils/listFormat'
 import { motion } from 'framer-motion'
 
+/* const animations = {
+  initial: { opacity: 0, y: 100 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -100 }
+} */
+const animations = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 }
+}
+
 const Country = () => {
   const { name: cname = '' } = useParams()
 
@@ -49,11 +60,11 @@ const Country = () => {
       </div>
       <motion.div
         className='row gx-md-5 gy-5 gy-lg-0 align-items-center'
-        animate={{
-          y: [100, 0],
-          opacity: [0, 1],
-          transition: { duration: 0.4 }
-        }}
+        variants={animations}
+        initial='initial'
+        animate='animate'
+        exit='exit'
+        transition={{ duration: 0.4 }}
       >
         <div className='col-12 col-sm-12 col-md-12 col-lg-6'>
           <div>
@@ -117,4 +128,5 @@ const Country = () => {
     </Page>
   )
 }
+
 export default Country

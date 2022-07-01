@@ -1,11 +1,18 @@
 import '../styles/grid.css'
 import { Link } from 'react-router-dom'
-import { Card } from './../components/common/Card'
+import Card from './../components/common/Card'
 import lowerCase from '../utils/lowerCase'
+import { motion } from 'framer-motion'
 
 const Grid = ({ entries = [], path = '' }) => {
   return (
-    <section className='row gy-5 gx-0 gx-sm-5'>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className='row gy-5 gx-0 gx-sm-5'
+    >
       {entries.map((index, key) => (
         <div
           key={key}
@@ -19,7 +26,7 @@ const Grid = ({ entries = [], path = '' }) => {
           </Link>
         </div>
       ))}
-    </section>
+    </motion.section>
   )
 }
 export default Grid

@@ -2,7 +2,7 @@ import { useDataContext } from '../context/DataContext'
 import useLocalData from '../hooks/useLocalData'
 import Grid from '../layout/Grid'
 import Page from '../layout/Page'
-import { SearchForm } from './common/SearchForm'
+import SearchForm from './common/SearchForm'
 import ViewSms from './common/ViewSms'
 
 const Search = () => {
