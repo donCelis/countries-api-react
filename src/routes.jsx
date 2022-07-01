@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation, useRoutes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 // auth
 import Private from './guards/Private'
@@ -11,66 +11,6 @@ import Country from './components/Country'
 import Countries from './components/Countries'
 import Search from './components/Search'
 import NotFound from './pages/NotFound'
-import AnimationComp from './components/animation'
-
-/* const Paths = () => {
-  const location = useLocation()
-  const router = useRoutes([
-    {
-      path: '/',
-      element: <Navigate to='/login' replace />
-    },
-    {
-      path: '/login',
-      element: (
-        <Public>
-          <Login />
-        </Public>
-      ),
-      index: true
-    },
-    {
-      path: '/countries',
-      element: (
-        <Private>
-          <App />
-        </Private>
-      ),
-      children: [
-        {
-          element: <Countries />,
-          index: true
-        },
-        {
-          path: ':name',
-          element: <Country />
-        },
-        {
-          path: 'search',
-          element: <Search />
-        }
-      ]
-    },
-    {
-      path: '/404',
-      element: <NotFound />
-    },
-    {
-      path: '*',
-      element: <Navigate to='/404' replace />
-    },
-    {
-      path: '/animation',
-      element: <AnimationComp />
-    }
-  ])
-
-  return (
-    <AnimatePresence initial={false}>
-      {router}
-    </AnimatePresence>
-  )
-} */
 
 const Paths = () => {
   const location = useLocation()
