@@ -60,7 +60,7 @@ const Paths = () => {
   ])
 
   return (
-    <AnimatePresence initial={false}>
+    <AnimatePresence exitBeforeEnter initial={false}>
       {router}
     </AnimatePresence>
   )

@@ -10,7 +10,7 @@
   box-shadow: none;
 }
 .dropdown-menu {
-  right: 0;
   display: block;
-  transform-origin: top right;
+  top: 3rem;
+  right: 0;
 }

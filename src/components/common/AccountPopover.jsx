@@ -1,17 +1,19 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../context/AuthContext'
 import { AnimatePresence, motion } from 'framer-motion'
 import Avatar from './Avatar'
+import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 
-const variants = {
+const scaleInOut = {
   open: {
     opacity: 1,
     scale: 1
   },
   closed: {
     opacity: 0,
-    scale: 0
+    scale: 0,
+    transformOrigin: 'top right'
   }
 }
 
@@ -19,6 +21,7 @@ const AccountPopover = () => {
   const navigate = useNavigate()
   const { logoutAuth, user } = useAuthContext()
   const [open, setOpen] = useState(false)
+  const ref = useRef(null)
 
   const handleLogout = async () => {
     try {
@@ -29,23 +32,24 @@ const AccountPopover = () => {
     }
   }
 
+  useOnClickOutside(ref, () => open && setOpen(false))
+
   return (
     <>
       <Avatar
+        ref={ref}
         img={user?.image}
-        onClick={() => setOpen(open => !open)}
-        data-bs-auto-close='true'
+        onClick={() => setOpen(!open)}
       />
-      <AnimatePresence>
+      <AnimatePresence exitBeforeEnter initial={false}>
         {open && (
           <motion.ul
-            layout
-            className='dropdown-menu dropdown-menu-start'
+            className='dropdown-menu'
+            variants={scaleInOut}
             initial='closed'
             exit='closed'
             animate={open ? 'open' : 'closed'}
             transition={{ duration: 0.2 }}
-            variants={variants}
           >
             <li>
               <p className='px-3 py-1 m-0'>{user?.username}</p>
