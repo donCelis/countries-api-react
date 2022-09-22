@@ -5,6 +5,7 @@ import Grid from '../layout/Grid'
 import Page from '../layout/Page'
 import Animate from './Animate'
 import SearchForm from './common/SearchForm'
+import Select from './common/Select'
 
 const Countries = () => {
   const { countries, isCache } = useDataContext()
@@ -17,8 +18,9 @@ const Countries = () => {
 
   return (
     <Page title='List' name='countries'>
-      <div className='row mb-5'>
+      <div className='d-flex align-items justify-content-between mb-5'>
         <SearchForm />
+        <Select />
       </div>
       <Animate>
         <Grid entries={isCache ? data : countries} />

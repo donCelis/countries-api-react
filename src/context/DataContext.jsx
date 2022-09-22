@@ -69,6 +69,28 @@ const methods = () => {
     }
   }
 
+  const filterByRegion = async (region) => {
+    const filteredCountries = countries.filter((country) => {
+      return country.region.toLowerCase().match(region.toLowerCase())
+    })
+    window.localStorage.byRegion = region
+    setCountries(filteredCountries)
+
+    /* try {
+      if (region !== '') {
+        const { data } = await axios.get(`https://restcountries.com/v3.1/region/${region}`)
+        setCountries(data)
+        window.localStorage.byRegion = region
+      } else {
+        const cache = JSON.parse(window.localStorage.countries)
+        setCountries(cache)
+        window.localStorage.removeItem('byRegion')
+      }
+    } catch (error) {
+      // setCountries([])
+    } */
+  }
+
   return {
     search,
     searchCountries,
@@ -77,7 +99,8 @@ const methods = () => {
     saveCountries,
     filterCountries,
     handlefilterCountries,
-    sms
+    sms,
+    filterByRegion
   }
 }
 
